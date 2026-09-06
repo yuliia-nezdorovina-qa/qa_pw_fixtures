@@ -14,8 +14,8 @@ test('Remove an article tag for the existing article with tag', async ({
   articleWithOneTag,
 }) => {
   await viewArticlePage.clickEditArticleButton();
-  await editArticlePage.assertTagIsVisible(articleWithOneTag.tag);
-  await editArticlePage.removeTag(articleWithOneTag.tag);
+  await editArticlePage.assertTagIsVisible(articleWithOneTag.tags[0]);
+  await editArticlePage.removeTag(articleWithOneTag.tags[0]);
 
   await editArticlePage.clickUpdateArticleButton();
   await page.waitForURL(/\/article\//);
@@ -23,5 +23,5 @@ test('Remove an article tag for the existing article with tag', async ({
   await page.reload();
 
   await viewArticlePage.assertArticleTitleIsVisible(articleWithOneTag.title);
-  await viewArticlePage.assertArticleTagIsRemoved(articleWithOneTag.tag);
+  await viewArticlePage.assertArticleTagIsRemoved(articleWithOneTag.tags[0]);
 });
